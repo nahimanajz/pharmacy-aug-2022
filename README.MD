@@ -1,7 +1,38 @@
 # Pharmacy
+
+Pharmacy is an application to show information based on authorized user among pharmacist, patien, physician and admin who monitors everything.
 # Node server
+[excel to json libray](https://www.npmjs.com/package/convert-excel-to-json) to read excel files and middleware to check who were auntenticated.
+
+## Installation guide
+```
+ cd node-server && npm install
+ npm start
+```
+## Endpoints
+
+| Method|API | Description |
+| ---|--- | ------ |
+|POST|http://192.168.1.64:8080/servlet/Authenticate| Login user|
+|POST| http://192.168.1.64:8080/servlet/Signup | Register new user |
+|POST|http://192.168.1.64:9000/api/v1/getinfo| get pharmacy info based on signed in user
 
 # REACT JS
 
-# Servlet
+ It has webpages to show off pages related to logged in user.
 
+ ## Installation guide
+ ```
+ cd client && npm install
+ npm start
+ ```
+# Servlet
+ 1. Open netbeans
+ 2. Click file > open > servlet> download and import `gson-2-8-2.jar and java.json.jar` libraries there you can read JSON key:value pair from __reactjs__ or __postman__
+ 3. Add tomcat server as well to serve APIs
+
+# Tools
+
+ - Netbeans
+ - Vscode
+ - Figma [figma](https://www.figma.com/proto/PmvZ7l9zFT59oObzXEWEtC/Untitled?node-id=1%3A3) 
