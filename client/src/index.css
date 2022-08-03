@@ -199,11 +199,13 @@ table {
   max-height: 400px;
   border-collapse: collapse;
 }
-td { padding: 24px;}
-tbody> tr:first-child, tr:nth-child(odd) {
+                        
+td, th { padding: 24px;}
+tr th { background-color: #FFD700;}
+tbody> tr:nth-child(even) {
   background-color: #FFD700;
 }
-tr:nth-child(even), thead>tr:first-child {
+tr:nth-child(odd), thead>tr:first-child {
   background-color: #FCFBF5;
   border-color: #FFD700;
 }
