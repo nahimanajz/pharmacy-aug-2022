@@ -136,12 +136,15 @@ const handleSignup =() => {
             <option value="pharmacist">Pharmacist</option>
           </select>
         </div>
-        <div className="checkboxes">
-          <input type="checkbox" id="terms" />
-          <label htmlFor="terms">I agree with terms and conditions</label> <br />
-          <input type="checkbox" id="newsletter" />
-          <label htmlFor="newsletter"> I want to receive newsletter </label>
-        </div>
+ 
+          <div className="checks" style={{marginLeft: -155, position: 'relative'}}>
+            <input type="checkbox"/>
+            <label htmlFor="terms"> I agree with terms and conditions</label> <br />
+            <input type="checkbox" id="newsletter" className="mleft" />
+            <label htmlFor="newsletter"> I want to receive newsletter </label>
+          </div>
+      
+        
         <div>
           <button className="btn" onClick={handleSignup}> Register </button>
     

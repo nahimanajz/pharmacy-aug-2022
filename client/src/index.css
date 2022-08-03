@@ -37,6 +37,10 @@ body{
  width: 100%;
  margin-bottom: 15px;
 }
+.checkboxes {
+   display: flex;
+   flex-direction: column;
+}
 
 /* Style the form icons */
 .icon {
@@ -106,6 +110,7 @@ a:hover, a:active {
    flex-direction: column;
    line-height:20px;
    color: #333;
+   margin-left: 0;
 }
 input[type="checkbox"], input[type="radio"]{
    margin-bottom: 20px;
@@ -183,21 +188,24 @@ li {
  height: auto;
  width: 60%;
 }
+.info:nth-child(2){
+   margin: 0 32px;
+}
 table {
   font-family: 'Inter', sans-serif;
   font-style: bold;
   width: 100%;
   flex: 1 1 200px;
   max-height: 400px;
-}
-td{
-  border: 1 solid transparent;
+  border-collapse: collapse;
 }
 td { padding: 24px;}
 tbody> tr:first-child, tr:nth-child(odd) {
-  background-color: #FCFBF5;
+  background-color: #FFD700;
 }
 tr:nth-child(even), thead>tr:first-child {
-  background-color: #FFD700;
+  background-color: #FCFBF5;
   border-color: #FFD700;
 }
+.mleft {margin-left: -32px;}
+.checks {margin-left: -138; position: 'relative';}
