@@ -19,31 +19,8 @@ public class Pharmacist extends User {
 
     @Override
     public String login(String username, String password){
-      String userType = "";
-        try {
-            
-            LinkedHashMap<Integer, UserModel> user = CoreDB.getInstance().getData();
-            for (Map.Entry<Integer, UserModel> entry : user.entrySet()) {
-                     
-                    UserModel currentUser = entry.getValue();                
-                    if (username.equals(currentUser.getUsername()) && password.equals(currentUser.getUserPassword())) {
-                        userType =  currentUser.getUserRole();
-                        User.setUserType(userType);
-                        break;
-
-
-                    } else {
-                        return null;
-                    }  
-               
-            }
-           
-            //userType = User.getUserType();
-            
-        }catch(Exception e){
-            System.out.print(e.getMessage());
-        }
-      return userType;
+        
+        return null;
     }
 
     @Override

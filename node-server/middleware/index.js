@@ -7,7 +7,7 @@ export const isUserAuthenicated = (req, res, next) => {
     }
     else{
         // usertype is not valid
-        return res.status(403).send(`${userType} is not authorized`)
+        return res.send({data:`${userType} is not authorized`})
     }
    
 

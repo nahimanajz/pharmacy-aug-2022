@@ -17,8 +17,9 @@ export default function Signin() {
             url: `${SERVLET_API_ROUTE}/Authenticate`,
             data: loginInfo,
             headers
-            }).then(({data}) => {                            
-               if(data.includes('invalid')){ 
+            }).then(({data}) => {   
+                console.log(data)                         
+               if(data.toLowerCase().includes('invalid')){ 
                 toast.error(data)
                } else {
                 setLoadData(true)

@@ -20,35 +20,8 @@ public class Patient extends User{
 
     @Override
     public String login(String username, String password){
-        String userType = "Patient login";
-        //Integer.parseInt(password);
         
-        try {
-            
-            LinkedHashMap<Integer, UserModel> user = CoreDB.getInstance().getData();
-            for (Map.Entry<Integer, UserModel> entry : user.entrySet()) {
-                
-                     
-                    UserModel currentUser = entry.getValue();  
-                   // return currentUser.getFname();
-                    if (username.equals(currentUser.getUsername()) && password.equals(currentUser.getUserPassword())) {
-                        return currentUser.getUserRole();
-//                        userType =  currentUser.getUserRole();  
-//                        User.setUserType(userType);
-//                        return "Admin";
-//
-                    } else {
-                       return null;
-                   }  
-               
-            }
-           
-            userType = User.getUserType();
-            
-        }catch(Exception e){
-            userType = e.getMessage();           
-        }
-      return userType;
+        return null;
     }
 
     @Override

@@ -98,7 +98,7 @@ import org.json.JSONObject;
                          
                          if(ValidatePassword.getInstance().pharmacistPassword(String.valueOf(myObject.getRetype_password())) == true){
                           lhmUsers = pharmacist.signup(myObject);  
-                           successMessage = "Pharmacist account is created";
+                           successMessage = "Pharmacist account is successfully";
                          }else {                           
                              successMessage = "Password should be only 5 numbers";
                          }

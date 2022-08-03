@@ -85,7 +85,7 @@ const handleSignup =() => {
             <i aria-hidden="true" className="fa fa-mobile "></i>
           </span>
           <input
-            type="text"
+            type="number"
             placeholder="phone Number"
             name="phoneNumber"
             onChange={handleChange}          
