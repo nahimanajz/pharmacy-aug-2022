@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
  * @author janvier
  */
 public class CoreDB {
-    private LinkedHashMap<Integer, UserModel> lhmData = new LinkedHashMap<Integer, UserModel>();
+    private LinkedHashMap<Integer, UserModel> records = new LinkedHashMap<Integer, UserModel>();
 	private static final CoreDB instance = new CoreDB();
 	private CoreDB() {
 		
@@ -21,7 +21,7 @@ public class CoreDB {
 		return instance;
 	}
 	public LinkedHashMap<Integer, UserModel> getData() {
-		return lhmData;
+		return records;
 	}
     
 }

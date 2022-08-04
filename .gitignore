@@ -1,3 +1,4 @@
 .DS_Store
 .history
 ./ServerNode/node_modules
+Dockerfile

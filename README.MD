@@ -35,4 +35,6 @@ Pharmacy is an application to show information based on authorized user among ph
 
  - Netbeans
  - Vscode
- - Figma [figma](https://www.figma.com/proto/PmvZ7l9zFT59oObzXEWEtC/Untitled?node-id=1%3A3) 
+ - Figma [figma](https://www.figma.com/proto/PmvZ7l9zFT59oObzXEWEtC/Untitled?node-id=1%3A3)
+ ### docker
+ docker run -d -p 3001:3000 -p 8081:80 -p 9001:9000  nginx:latest

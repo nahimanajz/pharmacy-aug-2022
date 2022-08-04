@@ -19,16 +19,16 @@ public class Physician extends User {
 
     @Override
     public String login(String username, String password){
-        
-        return null;
+        System.out.println("Physician Signed in");
+         User.setUserType("physician");
+         return null;
     }
 
     @Override
-    public LinkedHashMap<Integer, UserModel> signup(UserModel user){
-        LinkedHashMap<Integer, UserModel> newUser  = CoreDB.getInstance().getData();
-       newUser.put(new Random().nextInt(23), user);
-      
-       return newUser;
+    public LinkedHashMap<Integer, UserModel> signup(UserModel physician){
+        LinkedHashMap<Integer, UserModel> newPhysician  = CoreDB.getInstance().getData();
+        newPhysician.put(new Random().nextInt(23), physician);
+       return newPhysician;
     }
     
 }

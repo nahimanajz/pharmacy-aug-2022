@@ -18,16 +18,17 @@ public class Admin extends User{
 
     @Override
     public String login(String username, String password){
-        
-        return null;
+        System.out.println("Admin Signed in");
+         User.setUserType("admin");
+         return null;
     }
 
     @Override
-    public LinkedHashMap signup(UserModel user){
-       LinkedHashMap<Integer, UserModel> newUser  = CoreDB.getInstance().getData();
-       newUser.put(new Random().nextInt(23), user);
+    public LinkedHashMap signup(UserModel admin){
+       LinkedHashMap<Integer, UserModel> newAdmin  = CoreDB.getInstance().getData();
+       newAdmin.put(new Random().nextInt(23), admin);
       
-       return newUser;
+       return newAdmin;
     }
     
 }

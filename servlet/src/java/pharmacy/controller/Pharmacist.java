@@ -19,16 +19,17 @@ public class Pharmacist extends User {
 
     @Override
     public String login(String username, String password){
-        
-        return null;
+        System.out.println("Pharmacist Signed in");
+         User.setUserType("pharmacist");
+         return null;
     }
 
     @Override
-    public LinkedHashMap<Integer, UserModel> signup(UserModel user){
-        LinkedHashMap<Integer, UserModel> newUser  = CoreDB.getInstance().getData();
-       newUser.put(new Random().nextInt(23), user);
+    public LinkedHashMap<Integer, UserModel> signup(UserModel pharmacist){
+        LinkedHashMap<Integer, UserModel> newPharmacist  = CoreDB.getInstance().getData();
+        newPharmacist.put(new Random().nextInt(23), pharmacist);
       
-       return newUser;
+       return newPharmacist;
     }
     
 }

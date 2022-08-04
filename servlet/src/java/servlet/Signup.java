@@ -139,9 +139,6 @@ import org.json.JSONObject;
     protected void doPost(HttpServletRequest req, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(req, response);
-        
-	
-
     }
 
     /**
