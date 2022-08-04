@@ -2,3 +2,6 @@
 .history
 ./ServerNode/node_modules
 Dockerfile
+./server-node/dockerignore
+./client/dockerignore
+servlet/build/
