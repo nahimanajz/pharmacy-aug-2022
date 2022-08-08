@@ -37,4 +37,17 @@ Pharmacy is an application to show information based on authorized user among ph
  - Vscode
  - Figma [figma](https://www.figma.com/proto/PmvZ7l9zFT59oObzXEWEtC/Untitled?node-id=1%3A3)
  ### docker
- docker run -d -p 3001:3000 -p 8081:80 -p 9001:9000  nginx:latest
+ - Hopefully you have installed docker other wise get it from [here](docker.com) and run the following commands in terminal 
+ - cd client 
+    ``` 
+    docker build -t container_name . 
+    docker run -d -p 3000:3000 container_name
+    ```
+    Later on open browser and type localhost:3000 ` signup page is expected to be loaded`
+- cd node-server
+ ``` 
+    docker build -t container_name . 
+    docker run -d -p 9000:9000 container_name
+    ```
+ Later on open browser and type localhost:9000/testDocker ` Docker is working... is expected to be opened in webpage`
+ 

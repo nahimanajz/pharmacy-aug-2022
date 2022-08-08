@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors())
 
 app.post('/api/v1/getinfo', isUserAuthenicated, medicalData)
+app.get('/testDocker', (req, res)=> res.send("<h1>Docker is working...</h1>"))
 
 app.listen(port, () => console.log(`App is started ${port}`));
 
