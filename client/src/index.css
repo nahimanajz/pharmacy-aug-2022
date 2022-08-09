@@ -173,6 +173,11 @@ li {
    
    .col_half{width: 100%;}
    .md {width: 38vh;}
+   .table-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+   }
 } 
 /* Table style  */
 
@@ -186,7 +191,7 @@ li {
 .info{
  background-color: #fff;
  height: auto;
- width: 60%;
+ width: auto;
 }
 .info:nth-child(2){
    margin: 0 32px;
@@ -211,3 +216,4 @@ tr:nth-child(odd), thead>tr:first-child {
 }
 .mleft {margin-left: -32px;}
 .checks {margin-left: -138; position: 'relative';}
+
