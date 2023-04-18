@@ -30,8 +30,8 @@ import pharmacy.controller.*;
  *
  * @author janvier
  */
-@WebServlet(name = "Authenticate", urlPatterns = { "/Authenticate" })
-public class Authenticate extends HttpServlet {
+@WebServlet(name = "Signin", urlPatterns = { "/Signin" })
+public class Signin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -73,6 +73,7 @@ public class Authenticate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse response)
             throws ServletException, IOException {
+        
         processRequest(req, response);
 
         response.addHeader("Access-Control-Allow-Origin", "*");
@@ -84,6 +85,7 @@ public class Authenticate extends HttpServlet {
         User.setUserType(null);
         /** custom map */
 
+        
         boolean userFound = false;
         for (UserModel user : usersList(mappedUsers)) {
             if (user.getUsername().equals(fromJson.getUsername())
@@ -95,7 +97,7 @@ public class Authenticate extends HttpServlet {
         }
 
         authResponse(response, userFound);
-
+        
     }
 
     private ArrayList<UserModel> usersList(LinkedHashMap<Integer, UserModel> mappedUsers) {
