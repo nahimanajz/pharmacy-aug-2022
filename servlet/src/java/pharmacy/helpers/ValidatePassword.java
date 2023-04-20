@@ -8,57 +8,41 @@ package pharmacy.helpers;
  *
  * @author janvier
  */
+/**
+ * TODO: throw exception if anything goes wrong instead returning boolean
+ */
+/**
+ * Patient should use the username as a unique identifier and the password
+ * (length 4-6)
+ * Physician should use the email as the unique identifier and the password
+ * (length 7-8)
+ * The pharmacist should use the phone and the identifier and the password
+ * (length 9-10)
+ * 
+ */
 public class ValidatePassword {
- 
-    private static final ValidatePassword instance = new ValidatePassword();
-    public static ValidatePassword getInstance() {
-		return instance;
-	}
-    public Boolean adminPassword(String password){
-        if(password.length() != 8){
-            return false;
+
+    public static void validate(String role, String password) throws Exception {
+        role.toLowerCase();
+        switch (role) {
+            case "Patient":
+                if (password.length() < 4 || password.length() > 6) {
+                    throw new Exception("Password length should be between 4-6 for Patient");
+                }
+                break;
+            case "Physician":
+                if (password.length() < 7 || password.length() > 8) {
+                    throw new Exception("Password length should be between 7-8 for Physician");
+                }
+                break;
+            case "Pharmacist":
+                if (password.length() < 9 || password.length() > 10) {
+                    throw new Exception("Password length should be between 9-10 for Pharmacist");
+                }
+                break;
+            default:
+                throw new Exception("Invalid role specified");
         }
-        return true;
+
     }
-    
-    public Boolean patientPassword(String password){
-        if(password.length() != 7){
-            return false;
-        }
-        return true;
-        
-    }
-    
-    public Boolean physicianPassword(String password){
-        if(password.length() != 6){
-            return false;
-        }
-        return true;
-        
-    }
-    
-    public Boolean pharmacistPassword(String password){
-        if(password.length() != 5){
-            return false;
-        }
-        return true;
-        
-    }
-    
-    
-    public boolean isNumber(int password){
-        boolean answer = false;
-        try 
-		{ 
-			
-			answer= true;
-		}  
-		catch (NumberFormatException e)  
-		{ 
-			System.out.println(password + " is not a valid integer"); 
-                        answer = false;
-		} 
-	return answer;
-    }
-    
 }

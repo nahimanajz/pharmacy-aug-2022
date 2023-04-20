@@ -6,7 +6,7 @@ package pharmacy.controller;
 
 import com.pharmacy.model.UserModel;
 import pharmacy.db.CoreDB;
-import pharmacy.abstracte.User;
+import pharmacy.interfaces.IUser;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
@@ -15,20 +15,27 @@ import java.util.Random;
  *
  * @author janvier
  */
-public class Physician extends User {
+public class Physician implements IUser {
 
     @Override
-    public String login(String username, String password){
-        System.out.println("Physician Signed in");
-         User.setUserType("physician");
-         return null;
-    }
-
-    @Override
-    public LinkedHashMap<Integer, UserModel> signup(UserModel physician){
-        LinkedHashMap<Integer, UserModel> newPhysician  = CoreDB.getInstance().getData();
+    public LinkedHashMap<Integer, UserModel> signup(UserModel physician) {
+        LinkedHashMap<Integer, UserModel> newPhysician = CoreDB.getInstance().getData();
         newPhysician.put(new Random().nextInt(23), physician);
-       return newPhysician;
+        return newPhysician;
     }
-    
+
+    @Override
+    public UserModel login(UserModel userModel) {
+        UserModel loggedUser = null;
+        LinkedHashMap<Integer, UserModel> users = CoreDB.getInstance().getData();
+        for (Map.Entry<Integer, UserModel> entry : users.entrySet()) {
+            UserModel userData = entry.getValue();
+            if (userData.getEmail() == userModel.getEmail()
+                    && userData.getPassword() == userModel.getPassword()) {
+                loggedUser = userData;
+            }
+        }
+        return loggedUser;
+    }
+
 }

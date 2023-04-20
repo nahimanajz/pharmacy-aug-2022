@@ -18,12 +18,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import pharmacy.abstracte.User;
-import pharmacy.controller.Admin;
 import pharmacy.controller.Patient;
 import pharmacy.controller.Pharmacist;
 import pharmacy.controller.Physician;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.lang.reflect.Field;
+
 import pharmacy.controller.*;
 
 /**
@@ -32,6 +34,8 @@ import pharmacy.controller.*;
  */
 @WebServlet(name = "Signin", urlPatterns = { "/Signin" })
 public class Signin extends HttpServlet {
+
+    PrintWriter out;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -73,8 +77,9 @@ public class Signin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         processRequest(req, response);
+        out = response.getWriter();
 
         response.addHeader("Access-Control-Allow-Origin", "*");
         String requestData = req.getReader().lines().collect(Collectors.joining());
@@ -82,23 +87,55 @@ public class Signin extends HttpServlet {
 
         LinkedHashMap<Integer, UserModel> mappedUsers = new LinkedHashMap<Integer, UserModel>();
         mappedUsers = CoreDB.getInstance().getData();
-        User.setUserType(null);
-        /** custom map */
 
-        
-        boolean userFound = false;
-        for (UserModel user : usersList(mappedUsers)) {
-            if (user.getUsername().equals(fromJson.getUsername())
-                    && user.getUserPassword() == fromJson.getUserPassword()) {
-                userFound = true;
-                handleLogin(user.getUserRole().toLowerCase(), user.getUsername(),
-                        String.valueOf(user.getUserPassword()));
-            }
+        if (fromJson.getUsername() != null && (fromJson.getEmail() == null || fromJson.getPhoneNumber() == null)) {
+
+            Patient patient = new Patient();
+            out.print(patient.login(fromJson));
+
+        } else if (fromJson.getEmail() != null
+                && (fromJson.getUsername() == null || fromJson.getPhoneNumber() == null)) {
+
+            Physician physician = new Physician();
+            out.print(physician.login(fromJson));
+
+        } else if (fromJson.getPhoneNumber() != null
+                && (fromJson.getUsername() == null || fromJson.getEmail() == null)) {
+
+            Pharmacist physician = new Pharmacist();
+            out.print(physician.login(fromJson));
+
+        } else {
+            out.print("We don\'t have such user role");
         }
 
-        authResponse(response, userFound);
-        
+        /**
+         * TODO: CHECK KEY WHETERH IT IS phoneNumber, email, USERNAME
+         */
+        /*
+         * boolean userFound = false;
+         * for (UserModel user : usersList(mappedUsers)) {
+         * if (user.getUsername().equals(fromJson.getUsername())
+         * && user.getPassword() == fromJson.getPassword()) {
+         * userFound = true;
+         * // handleLogin(user.getRole().toLowerCase(), user.getUsername());
+         * }
+         * }
+         */
+
+        // authResponse(response, userFound);
+
     }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
     private ArrayList<UserModel> usersList(LinkedHashMap<Integer, UserModel> mappedUsers) {
         ArrayList<UserModel> usersList = new ArrayList<>();
@@ -116,22 +153,18 @@ public class Signin extends HttpServlet {
             out = response.getWriter();
             if (userFound == false) {
                 out.print("Invalid credentials");
-            } else {
-                out.print(User.getUserType());
             }
         } catch (Exception e) {
             System.out.print(e.getMessage());
-            //out.print("something went wrong");
+            // out.print("something went wrong");
 
         }
 
     }
 
     private void handleLogin(String role, String username, String password) {
-        if (role.equals("admin")) {
-            Admin admin = new Admin();
-            admin.login(username, password);
-        } else if (role.equals("patient")) {
+
+        if (role.equals("patient")) {
             Patient patient = new Patient();
             patient.login(username, password);
 
@@ -143,15 +176,4 @@ public class Signin extends HttpServlet {
             physician.login(username, password);
         }
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

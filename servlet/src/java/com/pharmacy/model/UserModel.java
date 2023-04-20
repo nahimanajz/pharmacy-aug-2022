@@ -1,68 +1,32 @@
 package com.pharmacy.model;
 
+
+
+/**
+ * pharmacist use phone number to login and password
+ * patient use username to login
+ * physician use email to login
+ * 
+ */
+
 public class UserModel {
- private String username;
-    private int  password;
-    private String phoneNumber;
-    private String  gender;
-    private String fname;
-    private String lname;
+
+    private String name;
     private int age;
-    private String  usertype;
-    private int retype_password;
+    private String gender;
+    private String password;
 
-    public String getUsername() {
-        return username;
-    }
+    private String email;
+    private String phoneNumber;
+    private String username;
+    private String userRole;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public int getUserPassword() {
-        return password;
-    }
-     public int setRetype_password(int password) {
-        return this.password = password;
-    }
-     public int getRetype_password(){
-         return retype_password;
-     }
-     
-    public void setUserPassword(int userPassword) {
-        this.password = userPassword;
+    public String getName() {
+        return name;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getFname() {
-        return fname;
-    }
-
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
-
-    public String getLname() {
-        return lname;
-    }
-
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getAge() {
@@ -73,11 +37,52 @@ public class UserModel {
         this.age = age;
     }
 
-    public String getUserRole() {
-        return usertype;
+    public String getGender() {
+        return gender;
     }
 
-    public void setUserRole(String userRole) {
-        this.usertype = userRole;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setRole(String userRole) {
+        this.userRole = userRole;
+    }
+
+    public String getRole() {
+        return userRole;
+    }
+
 }

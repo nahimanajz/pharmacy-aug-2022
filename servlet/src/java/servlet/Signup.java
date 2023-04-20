@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 import com.pharmacy.model.UserModel;
 import pharmacy.controller.*;
 
-
 import pharmacy.helpers.ValidatePassword;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,96 +23,47 @@ import java.util.stream.Collectors;
 import javax.servlet.annotation.MultipartConfig;
 import org.json.JSONObject;
 
-        
-
 /**
  *
  * @author janvier
  */
-@WebServlet(name = "Signup", urlPatterns = {"/Signup"})
- public class Signup extends HttpServlet {
+@WebServlet(name = "Signup", urlPatterns = { "/Signup" })
+public class Signup extends HttpServlet {
     PrintWriter out;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest req, HttpServletResponse response)
             throws ServletException, IOException {
-                response.addHeader("Access-Control-Allow-Origin", "*");
-                //response.setContentType("application/json");
-                
-                 out = response.getWriter();
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        // response.setContentType("application/json");
 
-             try {
-      
-                Admin admin = new Admin();
-		Patient patient = new Patient();
-                Pharmacist pharmacist = new Pharmacist();
-                Physician physician = new Physician();
-		LinkedHashMap<Integer, UserModel> lhmUsers = new LinkedHashMap<Integer, UserModel>();
-                
-                String jsonString = req.getReader().lines().collect(Collectors.joining());                         
-            
-                UserModel myObject = new Gson().fromJson(jsonString, UserModel.class);  
-                System.out.println(myObject.getUserRole());   
-                System.out.println(myObject.getAge());
+        out = response.getWriter();
 
-                String successMessage = null;               
-                if(myObject.getUserPassword()!= myObject.getRetype_password()){                    
-                   successMessage= "Passwords do not match";                    
-               }
+        try {
 
-                       if(myObject.getUserRole().equalsIgnoreCase("admin")){
-                            if(ValidatePassword.getInstance().adminPassword(String.valueOf(myObject.getRetype_password())) == true){
-                                lhmUsers = admin.signup(myObject);
-                                successMessage = "Admin account is created successfully";
-                            } else {
-                                successMessage="Password should be 8 numbers";
-                                                 
-                            }
-                     } else if(myObject.getUserRole().equalsIgnoreCase("Patient")){
-                         System.out.println("Patient account..");
-                         if(ValidatePassword.getInstance().patientPassword(String.valueOf(myObject.getRetype_password())) == true){
-                          lhmUsers = patient.signup(myObject);  
-                           successMessage = "Patient account is created successfully";
-                         } else {                             
-                              successMessage = "Password should be only 7 numbers";
-                              
-                         }
-                     }else if(myObject.getUserRole().equalsIgnoreCase("Physician")){
-                     
-                         if(ValidatePassword.getInstance().physicianPassword(String.valueOf(myObject.getRetype_password())) == true){
-                          lhmUsers = physician.signup(myObject);  
-                            successMessage = "Physician account is created successfully";
-                         }else {                             
-                             successMessage =  "Password should be only 6 numbers";   
-                         }
-                     
-                     }else if(myObject.getUserRole().equalsIgnoreCase("pharmacist")){
-                         
-                         if(ValidatePassword.getInstance().pharmacistPassword(String.valueOf(myObject.getRetype_password())) == true){
-                          lhmUsers = pharmacist.signup(myObject);  
-                           successMessage = "Pharmacist account is successfully";
-                         }else {                           
-                             successMessage = "Password should be only 5 numbers";
-                         }
-                     }
-                           
-                  out.print(successMessage);
+            LinkedHashMap<Integer, UserModel> lhmUsers = new LinkedHashMap<Integer, UserModel>();
+            String jsonString = req.getReader().lines().collect(Collectors.joining());
+            UserModel myObject = new Gson().fromJson(jsonString, UserModel.class);
+            ValidatePassword.validate(myObject.getRole(), myObject.getPassword());
+            out.print(createAccount(myObject));
 
-               } catch (Exception e) {
-		    e.printStackTrace();
-                    out.print(e.getMessage());
-	        }
-       
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.print(e.getMessage());
+        }
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
+    // + sign on the left to edit the code.">
     /**
      *
      * @param request
@@ -130,10 +80,10 @@ import org.json.JSONObject;
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse response)
@@ -150,6 +100,29 @@ import org.json.JSONObject;
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-  
-   
+
+    private String createAccount(UserModel userModel) throws Exception {
+        String role = userModel.getRole().toLowerCase();
+
+        switch (role) {
+            case "patient":
+                Patient patient = new Patient();
+                patient.signup(userModel);
+                break;
+
+            case "physician":
+                Physician physician = new Physician();
+                physician.signup(userModel);
+                break;
+
+            case "pharmacist":
+                Pharmacist pharmacist = new Pharmacist();
+                pharmacist.signup(userModel);
+                break;
+            default:
+                throw new Exception(role + "is excluded from accepted roles");
+        }
+        return role.toUpperCase() + "Account is Created";
+    }
+
 }
