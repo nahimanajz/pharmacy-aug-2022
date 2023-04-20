@@ -33,10 +33,10 @@ public class Patient implements IUser {
         LinkedHashMap<Integer, UserModel> users = CoreDB.getInstance().getData();
         for (Map.Entry<Integer, UserModel> entry : users.entrySet()) {
             UserModel currentUserData = entry.getValue();
-            
-            if (helper.checkCredentials(currentUserData, clientCredentials)==true) {
+
+            if (helper.isEqual(clientCredentials.getUsername(), currentUserData.getUsername())
+                    && helper.isEqual(clientCredentials.getPassword(), currentUserData.getPassword())) {
                 helper.loggedInUser = "patient";
-                System.out.println("System checking");
                 break;
             } else {
                 return "Invalid Patient credentials";

@@ -35,13 +35,15 @@ public class Pharmacist implements IUser {
         LinkedHashMap<Integer, UserModel> users = CoreDB.getInstance().getData();
         for (Map.Entry<Integer, UserModel> entry : users.entrySet()) {
             UserModel currentUserData = entry.getValue();
-            if (helper.checkCredentials(currentUserData, clientCredentials) == true) {
-                helper.loggedInUser = "pharmacist";
-                System.out.println("Pharmacy "+clientCredentials);
 
+            if (helper.isEqual(clientCredentials.getPhoneNumber(), currentUserData.getPhoneNumber())
+                    && helper.isEqual(clientCredentials.getPassword(), currentUserData.getPassword())) {
+                helper.loggedInUser = "Pharmacist";
+                break;
             } else {
-                return "Invalid Patient credentials";
+                return "Invalid Pharmacist credentials";
             }
+
         }
         return helper.loggedInUser;
     }
