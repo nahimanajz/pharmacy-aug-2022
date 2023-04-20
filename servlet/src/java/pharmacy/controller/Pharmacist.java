@@ -26,7 +26,7 @@ public class Pharmacist implements IUser {
     }
 
     @Override
-    public UserModel login(UserModel userModel) {
+    public String login(UserModel userModel) {
 
         UserModel loggedUser = null;
         LinkedHashMap<Integer, UserModel> users = CoreDB.getInstance().getData();

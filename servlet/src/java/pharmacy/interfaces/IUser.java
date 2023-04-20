@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
  * @author janvier
  */
 public interface IUser {
-    UserModel login(UserModel userModel);
+    String login(UserModel userModel);
      LinkedHashMap<Integer, UserModel> signup( UserModel user);
     
 }

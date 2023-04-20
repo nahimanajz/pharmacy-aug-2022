@@ -25,7 +25,7 @@ public class Physician implements IUser {
     }
 
     @Override
-    public UserModel login(UserModel userModel) {
+    public String login(UserModel userModel) {
         UserModel loggedUser = null;
         LinkedHashMap<Integer, UserModel> users = CoreDB.getInstance().getData();
         for (Map.Entry<Integer, UserModel> entry : users.entrySet()) {
