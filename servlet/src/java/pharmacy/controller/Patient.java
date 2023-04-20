@@ -21,22 +21,28 @@ public class Patient implements IUser {
     public LinkedHashMap<Integer, UserModel> signup(UserModel patient) {
         LinkedHashMap<Integer, UserModel> newPatient = CoreDB.getInstance().getData();
         newPatient.put(new Random().nextInt(23), patient);
-
         return newPatient;
     }
 
     @Override
-    public UserModel login(UserModel userModel) {
-        UserModel loggedUser = null;
+    public UserModel login(UserModel userModel){
+        //return userModel;
+         int sum = 0;
+        UserModel loggedUser = new UserModel();
+         System.out.println("username===>"+userModel.getUsername()+"==>password===>"+ userModel.getPassword());
         LinkedHashMap<Integer, UserModel> users = CoreDB.getInstance().getData();
         for (Map.Entry<Integer, UserModel> entry : users.entrySet()) {
             UserModel userData = entry.getValue();
-            if (userData.getUsername() == userModel.getUsername()
-                    && userData.getPassword() == userModel.getPassword()) {
-                loggedUser = userData;
+            sum ++;
+            System.out.println("From loop username ==>"+userModel.getUsername()+"password==>"+userData.getPassword());
+            if(1==1){
+                System.out.println("username is found");
+                break;
             }
         }
-        return loggedUser;
+        // System.out.println("total users"+ sum+"username"+userModel.getName());
+        return userModel;
+    
     }
 
 }

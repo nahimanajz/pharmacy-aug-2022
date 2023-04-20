@@ -52,9 +52,9 @@ public class Signup extends HttpServlet {
             LinkedHashMap<Integer, UserModel> lhmUsers = new LinkedHashMap<Integer, UserModel>();
             String jsonString = req.getReader().lines().collect(Collectors.joining());
             UserModel myObject = new Gson().fromJson(jsonString, UserModel.class);
-            ValidatePassword.validate(myObject.getRole(), myObject.getPassword());
+            ValidatePassword.validate(myObject.getUserRole(), myObject.getPassword());
             out.print(createAccount(myObject));
-
+          
         } catch (Exception e) {
             e.printStackTrace();
             out.print(e.getMessage());
@@ -101,9 +101,8 @@ public class Signup extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private String createAccount(UserModel userModel) throws Exception {
-        String role = userModel.getRole().toLowerCase();
-
+     private String createAccount(UserModel userModel) throws Exception {
+        String role = userModel.getUserRole().toLowerCase();
         switch (role) {
             case "patient":
                 Patient patient = new Patient();
@@ -120,9 +119,8 @@ public class Signup extends HttpServlet {
                 pharmacist.signup(userModel);
                 break;
             default:
-                throw new Exception(role + "is excluded from accepted roles");
+                throw new Exception(role + " is excluded from accepted roles");
         }
         return role.toUpperCase() + "Account is Created";
     }
-
 }

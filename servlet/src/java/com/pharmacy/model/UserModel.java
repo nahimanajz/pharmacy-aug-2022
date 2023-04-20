@@ -77,11 +77,11 @@ public class UserModel {
         this.username = username;
     }
 
-    public void setRole(String userRole) {
+    public void setUserRole(String userRole) {
         this.userRole = userRole;
     }
 
-    public String getRole() {
+    public String getUserRole() {
         return userRole;
     }
 

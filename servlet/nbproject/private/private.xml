@@ -8,9 +8,10 @@
             <file>file:/Volumes/D/Coding/Denis/servlet/src/java/pharmacy/db/CoreDB.java</file>
             <file>file:/Volumes/D/Coding/Denis/servlet/src/java/pharmacy/controller/Pharmacist.java</file>
             <file>file:/Volumes/D/Coding/Denis/servlet/src/java/pharmacy/controller/Patient.java</file>
-            <file>file:/Volumes/D/Coding/Denis/servlet/src/java/pharmacy/abstracte/User.java</file>
-            <file>file:/Volumes/D/Coding/Denis/servlet/src/java/pharmacy/controller/Admin.java</file>
-            <file>file:/Volumes/D/Coding/Denis/servlet/src/java/servlet/Authenticate.java</file>
+            <file>file:/Volumes/D/Coding/Denis/servlet/src/java/pharmacy/interfaces/IUser.java</file>
+            <file>file:/Volumes/D/Coding/Denis/servlet/web/index.jsp</file>
+            <file>file:/Volumes/D/Coding/Denis/servlet/src/java/servlet/Signin.java</file>
+            <file>file:/Volumes/D/Coding/Denis/servlet/src/java/pharmacy/helpers/ValidatePassword.java</file>
             <file>file:/Volumes/D/Coding/Denis/servlet/src/java/pharmacy/controller/Physician.java</file>
         </group>
     </open-files>

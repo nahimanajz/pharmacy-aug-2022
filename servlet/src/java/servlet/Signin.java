@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
+
 package servlet;
 
 import com.google.gson.Gson;
@@ -109,19 +106,7 @@ public class Signin extends HttpServlet {
             out.print("We don\'t have such user role");
         }
 
-        /**
-         * TODO: CHECK KEY WHETERH IT IS phoneNumber, email, USERNAME
-         */
-        /*
-         * boolean userFound = false;
-         * for (UserModel user : usersList(mappedUsers)) {
-         * if (user.getUsername().equals(fromJson.getUsername())
-         * && user.getPassword() == fromJson.getPassword()) {
-         * userFound = true;
-         * // handleLogin(user.getRole().toLowerCase(), user.getUsername());
-         * }
-         * }
-         */
+        
 
         // authResponse(response, userFound);
 
@@ -162,18 +147,5 @@ public class Signin extends HttpServlet {
 
     }
 
-    private void handleLogin(String role, String username, String password) {
-
-        if (role.equals("patient")) {
-            Patient patient = new Patient();
-            patient.login(username, password);
-
-        } else if (role.equals("pharmacist")) {
-            Pharmacist pharmacist = new Pharmacist();
-            pharmacist.login(username, password);
-        } else if (role.equals("physician")) {
-            Physician physician = new Physician();
-            physician.login(username, password);
-        }
-    }
+   
 }
