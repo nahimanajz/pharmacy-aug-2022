@@ -99,16 +99,12 @@ public class Signin extends HttpServlet {
         } else if (fromJson.getPhoneNumber() != null
                 && (fromJson.getUsername() == null || fromJson.getEmail() == null)) {
 
-            Pharmacist physician = new Pharmacist();
-            out.print(physician.login(fromJson));
+            Pharmacist pharmacist = new Pharmacist();
+            out.print(pharmacist.login(fromJson));
 
         } else {
             out.print("We don\'t have such user role");
         }
-
-        
-
-        // authResponse(response, userFound);
 
     }
 
@@ -120,32 +116,5 @@ public class Signin extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
-    private ArrayList<UserModel> usersList(LinkedHashMap<Integer, UserModel> mappedUsers) {
-        ArrayList<UserModel> usersList = new ArrayList<>();
-
-        for (Map.Entry<Integer, UserModel> entry : mappedUsers.entrySet()) {
-            UserModel umData = entry.getValue();
-            usersList.add(umData);
-        }
-        return usersList;
-    }
-
-    private void authResponse(HttpServletResponse response, boolean userFound) {
-        PrintWriter out;
-        try {
-            out = response.getWriter();
-            if (userFound == false) {
-                out.print("Invalid credentials");
-            }
-        } catch (Exception e) {
-            System.out.print(e.getMessage());
-            // out.print("something went wrong");
-
-        }
-
-    }
-
-   
+    }// </editor-fold> 
 }

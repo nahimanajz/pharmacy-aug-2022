@@ -27,18 +27,21 @@ public class Patient implements IUser {
 
     @Override
     public String login(UserModel clientCredentials) {
-
         Helper helper = new Helper();
         helper.loggedInUser = "";
 
         LinkedHashMap<Integer, UserModel> users = CoreDB.getInstance().getData();
         for (Map.Entry<Integer, UserModel> entry : users.entrySet()) {
             UserModel currentUserData = entry.getValue();
-            if (helper.checkCredentials(currentUserData, clientCredentials)) {
+            
+            if (helper.checkCredentials(currentUserData, clientCredentials)==true) {
                 helper.loggedInUser = "patient";
+                System.out.println("System checking");
+                break;
             } else {
                 return "Invalid Patient credentials";
             }
+
         }
         return helper.loggedInUser;
 

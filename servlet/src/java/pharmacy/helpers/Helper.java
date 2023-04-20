@@ -19,8 +19,10 @@ public class Helper {
      * @return { bool }
      */
     public boolean checkCredentials(UserModel loopedUser, UserModel clientUser) {
-        System.out.println("Checking credentials attent");
         String role = loopedUser.getUserRole();
+        System.out.println("Checking credentials attent"+loopedUser.getEmail());
+        return false;
+        /* 
         switch (this.toLower(role)) {
             case "patient":
                 return loopedUser.getUsername().equals(clientUser.getUsername())
@@ -34,6 +36,7 @@ public class Helper {
             default:
                 return false;
         }
+        */
     }
 
 }

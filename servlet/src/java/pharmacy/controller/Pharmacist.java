@@ -6,6 +6,7 @@ package pharmacy.controller;
 
 import com.pharmacy.model.UserModel;
 import pharmacy.db.CoreDB;
+import pharmacy.helpers.Helper;
 import pharmacy.interfaces.IUser;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -26,18 +27,23 @@ public class Pharmacist implements IUser {
     }
 
     @Override
-    public String login(UserModel userModel) {
+    public String login(UserModel clientCredentials) {
 
-        UserModel loggedUser = null;
+        Helper helper = new Helper();
+        helper.loggedInUser = "";
+
         LinkedHashMap<Integer, UserModel> users = CoreDB.getInstance().getData();
         for (Map.Entry<Integer, UserModel> entry : users.entrySet()) {
-            UserModel userData = entry.getValue();
-            if (userData.getPhoneNumber() == userModel.getPhoneNumber()
-                    && userData.getPassword() == userModel.getPassword()) {
-                loggedUser = userData;
+            UserModel currentUserData = entry.getValue();
+            if (helper.checkCredentials(currentUserData, clientCredentials) == true) {
+                helper.loggedInUser = "pharmacist";
+                System.out.println("Pharmacy "+clientCredentials);
+
+            } else {
+                return "Invalid Patient credentials";
             }
         }
-        return loggedUser;
+        return helper.loggedInUser;
     }
 
 }
